@@ -24,33 +24,49 @@ if __name__ == '__main__':
         "/": divide
     }
 
-    num1 = int(input("What's the first number?: "))
-    for symbol in operations:
-        print(symbol)
 
-    # Here we select "+"
-    operation_symbol = input("Pick an operation: ")
-    num2 = int(input("What's the next number?: "))
-    calculation_function = operations[operation_symbol]
-    first_answer = calculation_function(num1, num2)
+    def continuare2():
+        while True:
+            again = input("Did you finish. Y N: ").lower()
+            print("test1")
+            if again == "y" or again == "yes":
+                print("test2")
+                return False
 
-    print(f"{num1} {operation_symbol} {num2} = {first_answer}")
+            elif again == "n" or again == "no":
+                print("test3")
+                return True
 
-    # Here we select "*" which overides the "+" we selected on line 26.
-    operation_symbol = input("Pick an operation: ")
-    num3 = int(input("What's the next number?: "))
+    def startcalculation(num1= 0):
+        if num1 == 0:
+            num1 = int(input("What's the first number?: "))
+        for symbol in operations:
+            print(symbol)
+        operation_symbol = input("Pick an operation: ")
+        num2 = int(input("What's the next number?: "))
+        calculation_function = operations[operation_symbol]
+        answer = calculation_function(num1, num2)
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
+        return answer
+    def samenumber(resoults):
+        while True:
+            again = input(f"Use {resoults} as first number? Y N: ").lower()
+            if again == "y" or again == "yes":
+                return resoults
+            elif again == "n" or again == "no":
+                return 0
+            else:
+                print("i did not understand could you please say it again?")
 
-    # Here the calculation_function selected will be the multiply() function
-    calculation_function = operations[operation_symbol]
 
-    # Here the code will be:
-    # second_answer = multiply(multiply(num1, num2), num3)
-    second_answer = calculation_function(calculation_function(num1, num2), num3)
-    # second_answer = 2 * 3 * 3 = 18
-    # To fix this bug we need to change the code on line 42 to:
-    second_answer = calculation_function(first_answer, num3)
-    # In the next lesson, we will delete all the code from line 34-48 so don't worry
-    # It won't affect your final project.
-    # But it's a good oportunity to practice debugging. 🐞
+    num1 = 0
+    continuare = True
 
-    print(f"{first_answer} {operation_symbol} {num3} = {second_answer}")
+    while continuare:
+        resoults = startcalculation(num1)
+        continuare = continuare2()
+        continuare = continuare
+        num1 = samenumber(resoults)
+
+
+
